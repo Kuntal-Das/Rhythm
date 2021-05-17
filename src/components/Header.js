@@ -1,8 +1,12 @@
 import React from "react"
 
+import logo from "../logo/big-light.svg"
+
 const Header = () => (
     <header>
-        <h1>Header</h1>
+        <div className="container">
+            {logo}
+        </div>
     </header>
 )
 
