@@ -1,0 +1,16 @@
+.slider{
+  display: flex;
+  align-items: center;
+  gap:1em;
+}
+
+.reading,
+.name{
+  font-weight: 700;
+}
+
+.reading{
+  padding: 0.5em 1em;
+  border-radius: 5px;
+  background-color: var(--clr-white);
+}
