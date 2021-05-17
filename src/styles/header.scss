@@ -1,0 +1,19 @@
+.header {
+  background-color: #d4c5d4;
+}
+.flex-spacebetween {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  height: 2.5rem;
+}
+
+.icon {
+    height: 1.25rem;
+}
+.icon-link + .icon-link{
+    margin-left: 1em;
+}
