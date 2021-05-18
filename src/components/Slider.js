@@ -10,10 +10,12 @@ const Slider = (props) => (
       className="slider-input"
       name={props.name}
       min={props.min}
+      max={props.max}
       step={props.step}
-      // value={props.value}
+      value={props.value}
+      onChange={props.handelChange}
     />
-    <span className="reading">{props.value}</span>
+    <span className="reading">{`${props.value} ${props.unit}`}</span>
   </div>
 );
 Slider.propTypes = {
@@ -28,6 +30,7 @@ Slider.defaultProps = {
   min: 0,
   max: 100,
   value: 50,
-  step: 5
+  step: 5,
+  unit: "%"
 };
 export default Slider;
