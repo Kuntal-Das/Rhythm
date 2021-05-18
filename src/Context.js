@@ -6,7 +6,9 @@ class ContextProvider extends Component {
   state = {
     tempo: 90,
     volume: 80,
-    isPlaying: false
+    isPlaying: false,
+    instruments: {},
+    currentposition: 0
   };
 
   togglePlayState = () => {

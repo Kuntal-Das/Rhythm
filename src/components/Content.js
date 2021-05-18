@@ -33,9 +33,14 @@ const Content = () => (
         </p>
         <Notes nodes={nodes} instruments={instruments} />
       </div>
-      <div class="actions">
+      <div className="actions">
         <button className="btn">Add Tune</button>
-        <input type="range" className="input-timeline_marker" min="0" max="6" />
+        <input
+          type="range"
+          className="input-timeline_marker"
+          min="0"
+          max={nodes}
+        />
       </div>
     </div>
   </main>

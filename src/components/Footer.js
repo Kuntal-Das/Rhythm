@@ -14,7 +14,7 @@ const Footer = () => {
     togglePlayState
   } = useContext(Context);
   const tempoSTEP = 1,
-    tempoMAX = 120;
+    tempoMAX = 200;
   return (
     <footer className="footer">
       <div className="container flex-spacebetween">
@@ -27,7 +27,7 @@ const Footer = () => {
           handelChange={handelChange}
         />
         <button className="playpause" onClick={togglePlayState}>
-          {isPlaying ? `Play` : "Pause"}
+          {isPlaying ? `Pause` : `Play`}
         </button>
         <Slider name="volume" value={volume} handelChange={handelChange} />
       </div>
