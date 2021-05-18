@@ -7,7 +7,7 @@ const Slider = (props) => (
     <span className="name">{props.name}</span>
     <input
       type="range"
-      className="slider-input"
+      className="input-slider"
       name={props.name}
       min={props.min}
       max={props.max}

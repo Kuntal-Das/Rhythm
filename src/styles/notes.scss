@@ -1,0 +1,11 @@
+.notes{
+  overflow: scroll;
+}
+.node{
+  display: grid;
+  place-items: center;
+  border:1px solid var(--clr-dark);
+}
+.active-node{
+  background-color: var(--clr-primary)
+}
