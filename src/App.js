@@ -1,17 +1,21 @@
-import React from "react"
-import './styles/App.scss';
+import React from "react";
+import "./styles/App.scss";
 
-import Header from "./components/Header"
-import Content from "./components/Content"
-import Footer from "./components/Footer"
+import Header from "./components/Header";
+import Content from "./components/Content";
+import Footer from "./components/Footer";
+
+import { ContextProvider } from "./Context";
 
 function App() {
   return (
-    <div className="app">
-      <Header />
-      <Content />
-      <Footer />
-    </div>
+    <ContextProvider>
+      <div className="app">
+        <Header />
+        <Content />
+        <Footer />
+      </div>
+    </ContextProvider>
   );
 }
 

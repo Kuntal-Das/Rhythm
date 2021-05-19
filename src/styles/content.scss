@@ -1,0 +1,35 @@
+.content-grid{
+  display:grid;
+  grid-template-columns: repeat(2,1fr);
+}
+.justify-end{
+  justify-self: end;
+}
+.justify-start{
+  justify-self: start;
+}
+
+.input-select{
+  justify-self: start;
+}
+
+.input-select,
+.btn{
+  min-width: calc(10em + 5px);
+  padding: 0.75em 1.75em;
+  font-weight: 700;
+  border-radius: 5px;
+}
+
+.btn{
+  border: none;
+  color: white;
+  background-color: var(--clr-primary);
+}
+
+.actions{
+  grid-column: span 2;
+  display: grid;
+  grid-template-columns: minmax(auto,calc(10em + 5px)) 1fr;
+  grid-gap: 1em;
+}

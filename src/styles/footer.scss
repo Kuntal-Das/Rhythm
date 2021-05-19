@@ -1,3 +1,10 @@
 .footer{
-  background-color: #d4c5d4;
+  background-color: var(--clr-grayish);
+}
+.playpause{
+  border-radius: 100%;
+  width: 5.5em;
+  height: 5.5em;
+  display: grid;
+  place-items: center;
 }
