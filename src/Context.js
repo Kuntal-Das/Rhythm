@@ -22,7 +22,7 @@ const kickBuffer = new Tone.ToneAudioBuffer(`${url}/kick-808.wav`, () =>
 
 const ContextProvider = ({ children }) => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [currentposition, setCurrentposition] = useState(0);
+  // const [currentposition, setCurrentposition] = useState(0);
   const [options, setOptions] = useState({
     presetName: "",
     volume: 80,
@@ -148,7 +148,7 @@ const ContextProvider = ({ children }) => {
         ...options,
         ...preset,
         isPlaying,
-        currentposition,
+        // currentposition,
         handelChange,
         togglePlayState,
         toggleNote

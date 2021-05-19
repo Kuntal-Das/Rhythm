@@ -4,7 +4,8 @@ import "../styles/timeline.scss";
 import { Context } from "../Context";
 
 const Timeline = () => {
-  const { currentposition, noOfNodes, notes, toggleNote } = useContext(Context);
+    // currentposition, 
+  const { noOfNodes, notes, toggleNote } = useContext(Context);
   const keysArr = Object.keys(notes);
   // const instruments = keysArr.length;
 
