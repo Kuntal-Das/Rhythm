@@ -33,10 +33,10 @@ const Timeline = () => {
               ))}
             </div>
           ))}
-          <span className="marker"></span>
+          {/* <span className="marker"></span> */}
         </div>
       </div>
-      <div className="actions">
+      {/* <div className="actions">
         <button className="btn">Add Tune</button>
         <input
           type="range"
@@ -46,7 +46,7 @@ const Timeline = () => {
           value={currentposition}
           readOnly
         />
-      </div>
+      </div> */}
     </>
   );
 };

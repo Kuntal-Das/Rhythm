@@ -4,13 +4,21 @@ import * as Tone from "tone";
 import presetsData from "./presets";
 
 const Context = createContext();
-const url ="https://raw.githubusercontent.com/Kuntal-Das/music-box-sounds/main/Drum%20Samples/Samples";
+const url =
+  "https://raw.githubusercontent.com/Kuntal-Das/music-box-sounds/main/Drum%20Samples/Samples";
 
-const openhatBuffer = new Tone.ToneAudioBuffer(`${url}/openhat-808.wav`,()=>console.log("openhat loaded"))
-const closedhatBuffer = new Tone.ToneAudioBuffer(`${url}/hihat-808.wav`,()=>console.log("closedhat loaded"))
-const clapBuffer = new Tone.ToneAudioBuffer(`${url}/clap-808.wav`,()=>console.log("clap loaded"))
-const kickBuffer = new Tone.ToneAudioBuffer(`${url}/kick-808.wav`,()=>console.log("kick loaded"))
-
+const openhatBuffer = new Tone.ToneAudioBuffer(`${url}/openhat-808.wav`, () =>
+  console.log("openhat loaded")
+);
+const closedhatBuffer = new Tone.ToneAudioBuffer(`${url}/hihat-808.wav`, () =>
+  console.log("closedhat loaded")
+);
+const clapBuffer = new Tone.ToneAudioBuffer(`${url}/clap-808.wav`, () =>
+  console.log("clap loaded")
+);
+const kickBuffer = new Tone.ToneAudioBuffer(`${url}/kick-808.wav`, () =>
+  console.log("kick loaded")
+);
 
 const ContextProvider = ({ children }) => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -39,7 +47,7 @@ const ContextProvider = ({ children }) => {
 
   const loadPreset = (key) => {
     if (key === "") {
-      console.log(`key : "${key}" is not found in PresetData\n returning...`);
+      // console.log(`key : "${key}" is not found in PresetData\n returning...`);
       return;
     }
     const { tempo, noOfNodes, notes } = presetsData[key];
@@ -64,7 +72,7 @@ const ContextProvider = ({ children }) => {
     // const url1 =
     //   "https://github.com/Kuntal-Das/music-box-sounds/blob/main/Drum%20Samples/Samples";
 
-    const vol = new Tone.Volume().toDestination();
+    // const vol = new Tone.Volume().toDestination();
     // const osc = new Tone.Oscillator().connect(vol).start();
     const openhatPlayer = new Tone.Player(openhatBuffer).toDestination();
     const closedhatPlayer = new Tone.Player(closedhatBuffer).toDestination();
@@ -90,7 +98,7 @@ const ContextProvider = ({ children }) => {
     Tone.Transport.bpm.value = options.tempo;
     Tone.Transport.scheduleRepeat(music, "16n");
     Tone.Transport.start();
-    console.log("Tone.Transport.start()");
+    // console.log("Tone.Transport.start()");
   };
 
   useEffect(loadRandomPreset, []);
@@ -103,27 +111,29 @@ const ContextProvider = ({ children }) => {
   useEffect(() => {
     if (isPlaying) {
       toneSetUp();
+      Tone.start();
     } else {
       Tone.Transport.stop();
       Tone.Transport.cancel(0);
     }
-    console.log(`isPlaying: ${isPlaying}`);
+    // console.log(`isPlaying: ${isPlaying}`);
     return () => Tone.Transport.stop();
   }, [isPlaying]);
 
   useEffect(() => {
     Tone.Transport.bpm.value = options.tempo;
   }, [options.tempo]);
-  useEffect(() => {
-    Tone.vol;
-  }, [options.volume]);
+
+  // useEffect(() => {
+  //   Tone.vol;
+  // }, [options.volume]);
 
   const toggleNote = (ckey) => {
     const [ins, i, j] = ckey.split("_");
-    console.log(ins, i, j);
+    // console.log(ins, i, j);
     const newNotes = [...preset.notes[ins]];
     newNotes[j] = newNotes[j] ? 0 : 1;
-    console.log(newNotes);
+    // console.log(newNotes);
     setPreset((prevPreset) => ({
       ...prevPreset,
       notes: {

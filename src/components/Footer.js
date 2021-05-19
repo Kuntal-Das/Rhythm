@@ -8,7 +8,7 @@ import { Context } from "../Context";
 const Footer = () => {
   const {
     tempo,
-    volume,
+    // volume,
     handelChange,
     isPlaying,
     togglePlayState
@@ -29,7 +29,7 @@ const Footer = () => {
         <button className="playpause" onClick={togglePlayState}>
           {isPlaying ? `Pause` : `Play`}
         </button>
-        <Slider name="volume" value={volume} handelChange={handelChange} />
+        {/* <Slider name="volume" value={volume} handelChange={handelChange} /> */}
       </div>
     </footer>
   );
