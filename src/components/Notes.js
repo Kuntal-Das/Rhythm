@@ -3,23 +3,32 @@ import "../styles/notes.scss";
 
 import { Context } from "../Context";
 
-const Notes = ({ nodes, instruments }) => {
-  const { isPlaying } = useContext(Context);
-  const notes = {
+const Notes = () => {
+  const { isPlaying, noOfNodes, notes } = useContext(Context);
+  const keysArr = Object.keys(notes);
+  const instruments = keysArr.length;
+
+  const notesStyle = {
     gridColumn: " 2/-1",
     gridRow: `span ${instruments}`,
     display: "grid",
-    gridTemplateColumns: `repeat(${nodes}, 5em)`
+    gridTemplateColumns: `repeat(${noOfNodes}, 5em)`
   };
-  const arr = new Array(nodes * instruments);
-  for (let i = 0; i < nodes * instruments; i++) {
-    const rand = Math.round(Math.random() * 1);
-    arr[i] = rand ? "node" : "node active-node";
-  }
+
   return (
-    <div id="notes" className="notes" style={notes}>
-      {arr.map((classname, i) => (
+    <div id="notes" className="notes" style={notesStyle}>
+      {/* {arr.map((classname, i) => (
         <span key={i} className={classname}></span>
+      ))} */}
+      {keysArr.map((instrument) => (
+        <>
+          {notes[instrument].map((node, i) => (
+            <span
+              key={`${instrument}_${i}`}
+              className={node ? "node active-node" : "node"}
+            ></span>
+          ))}
+        </>
       ))}
       <span
         className="marker"
