@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import "../styles/content.scss";
 
-import Notes from "./Notes";
+import Timeline from "./Timeline";
 import { Context } from "../Context";
 
 import presets from "../presets";
@@ -26,7 +26,7 @@ const Content = () => {
           ))}
         </select>
         <button className="btn justify-end">Export</button>
-        <div className="timeline">
+        {/* <div className="timeline">
           <p id="ins1" className="instrument">
             Instrument 1
           </p>
@@ -39,9 +39,10 @@ const Content = () => {
           <p id="ins1" className="instrument">
             instrument 4
           </p>
-          <Notes/>
-        </div>
-        <div className="actions">
+          <Timeline/>
+        </div> */}
+          <Timeline/>
+        {/* <div className="actions">
           <button className="btn">Add Tune</button>
           <input
             type="range"
@@ -49,7 +50,7 @@ const Content = () => {
             min="0"
             max={16}
           />
-        </div>
+        </div> */}
       </div>
     </main>
   );
