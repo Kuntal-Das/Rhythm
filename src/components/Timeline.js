@@ -4,9 +4,9 @@ import "../styles/timeline.scss";
 import { Context } from "../Context";
 
 const Timeline = () => {
-  const { isPlaying, noOfNodes, notes } = useContext(Context);
+  const { currentposition, noOfNodes, notes, toggleNote } = useContext(Context);
   const keysArr = Object.keys(notes);
-  const instruments = keysArr.length;
+  // const instruments = keysArr.length;
 
   const notesStyle = {
     // gridColumn: " 2/-1",
@@ -20,12 +20,16 @@ const Timeline = () => {
       <div className="timeline-wrapper">
         <div className="timeline">
           {keysArr.map((instrument, i) => (
-            <div className="notes" style={notesStyle}>
+            <div key={instrument} className="notes" style={notesStyle}>
               <p key={`${instrument}_${i}`} className="instrument">
                 {instrument}
               </p>
               {notes[instrument].map((node, j) => (
-                <span className={node ? "node active-node" : "node"}></span>
+                <span
+                  key={`${instrument}_${i}_${j}`}
+                  className={node === 1 ? "node active-node" : "node"}
+                  onClick={()=>toggleNote(`${instrument}_${i}_${j}`)}
+                ></span>
               ))}
             </div>
           ))}
@@ -38,7 +42,9 @@ const Timeline = () => {
           type="range"
           className="input-timeline_marker"
           min="0"
-          max={16}
+          max={noOfNodes}
+          value={currentposition}
+          readOnly
         />
       </div>
     </>
