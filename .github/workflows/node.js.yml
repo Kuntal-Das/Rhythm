@@ -27,7 +27,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm cache clean --force
 #     - run: rm -rf node_modules
-    - run: del /F /Q node_modules
+#     - run: del /F /Q node_modules
     - run: npm install
     - run: npm run build
     - run: npm run test
