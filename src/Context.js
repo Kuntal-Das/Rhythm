@@ -50,7 +50,7 @@ const ContextProvider = ({ children }) => {
 
   const play = () => {
     if (!audioPlayer.audioLoader) return;
-    Tone.context.latencyHint = "fastest";
+    // Tone.context.latencyHint = "playback";
     Tone.Transport.bpm.value = options.tempo;
     const seq = new Tone.Sequence(
       (time, idx) => {
