@@ -4,8 +4,11 @@ import "../styles/slider.scss";
 
 const Slider = (props) => (
   <div className="slider">
-    <span className="name">{props.name}</span>
+    <label htmlFor={`${props.name}Slider`} className="name">
+      {props.name}
+    </label>
     <input
+      id={`${props.name}Slider`}
       type="range"
       className="input-slider"
       name={props.name}
@@ -15,7 +18,7 @@ const Slider = (props) => (
       value={props.value}
       onChange={props.handelChange}
     />
-    <span className="reading">{`${props.value} ${props.unit}`}</span>
+    <label className="reading">{`${props.value} ${props.unit}`}</label>
   </div>
 );
 Slider.propTypes = {

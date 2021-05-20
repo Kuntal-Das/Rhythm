@@ -8,28 +8,46 @@ import { Context } from "../Context";
 const Footer = () => {
   const {
     tempo,
-    // volume,
+    tempoMin,
+    tempoMax,
+    tempoStep,
+    volume,
+    volMax,
+    volMin,
+    volStep,
     handelChange,
     isPlaying,
+    isLoading,
     togglePlayState
   } = useContext(Context);
-  const tempoSTEP = 1,
-    tempoMAX = 200;
   return (
     <footer className="footer">
-      <div className="container flex-spacebetween">
+      <div className="container grid-footer">
         <Slider
           name="tempo"
           unit="bpm"
-          step={tempoSTEP}
-          max={tempoMAX}
+          step={tempoStep}
+          min={tempoMin}
+          max={tempoMax}
           value={tempo}
           handelChange={handelChange}
         />
-        <button className="playpause" onClick={togglePlayState}>
-          {isPlaying ? `Pause` : `Play`}
+        <Slider
+          name="volume"
+          // unit=""
+          min={volMin}
+          max={volMax}
+          step={volStep}
+          value={volume}
+          handelChange={handelChange}
+        />
+        <button
+          className="playpause"
+          onClick={togglePlayState}
+          disabled={isLoading}
+        >
+          {isLoading ? "Loading" : isPlaying ? `Pause` : `Play`}
         </button>
-        {/* <Slider name="volume" value={volume} handelChange={handelChange} /> */}
       </div>
     </footer>
   );

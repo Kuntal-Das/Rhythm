@@ -1,6 +1,11 @@
 .footer{
   background-color: var(--clr-grayish);
 }
+.grid-footer{
+  display:grid;
+  grid-template-columns: 1fr 1fr auto;
+  align-items: center;
+}
 .playpause{
   border-radius: 100%;
   width: 5.5em;

@@ -1,7 +1,9 @@
 .slider{
   display: flex;
+  gap:0.5em;
+  flex-wrap: wrap;
   align-items: center;
-  gap:1em;
+  justify-content: center;
 }
 
 .reading,
@@ -11,6 +13,7 @@
 
 .name{
   text-transform: capitalize;
+  width:7ch;
 }
 
 .reading{
@@ -20,4 +23,16 @@
   border-radius: 5px;
   background-color: var(--clr-white);
 }
-// input-slider{}
+.input-slider{
+  cursor: pointer;
+  width:50%;
+}
+@media(max-width:575px){
+  .input-slider{
+    width: 80%;
+  }
+  .name,
+  .reading{  
+    font-size: 0.9rem;
+  }
+}

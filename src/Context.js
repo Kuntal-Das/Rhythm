@@ -4,34 +4,75 @@ import * as Tone from "tone";
 import presetsData from "./presets";
 
 const Context = createContext();
-const url =
-  "https://raw.githubusercontent.com/Kuntal-Das/music-box-sounds/main/Drum%20Samples/Samples";
-
-const openhatBuffer = new Tone.ToneAudioBuffer(`${url}/openhat-808.wav`, () =>
-  console.log("openhat loaded")
-);
-const closedhatBuffer = new Tone.ToneAudioBuffer(`${url}/hihat-808.wav`, () =>
-  console.log("closedhat loaded")
-);
-const clapBuffer = new Tone.ToneAudioBuffer(`${url}/clap-808.wav`, () =>
-  console.log("clap loaded")
-);
-const kickBuffer = new Tone.ToneAudioBuffer(`${url}/kick-808.wav`, () =>
-  console.log("kick loaded")
-);
 
 const ContextProvider = ({ children }) => {
-  const [isPlaying, setIsPlaying] = useState(false);
   // const [currentposition, setCurrentposition] = useState(0);
   const [options, setOptions] = useState({
     presetName: "",
-    volume: 80,
-    tempo: 90
+    volume: 60,
+    volMin: 0,
+    volMax: 100,
+    volStep: 5,
+    tempo: 90,
+    tempoMin: 30,
+    tempoMax: 210,
+    tempoStep: 1
   });
-  const [preset, setPreset] = useState({
+  var [preset, setPreset] = useState({
     noOfNodes: 16,
     notes: {}
   });
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [audioPlayer, setAudioPlayer] = useState({
+    audioLoader: null,
+    volNode: null
+  });
+
+  const toneSetUp = () => {
+    const url =
+      "https://raw.githubusercontent.com/Kuntal-Das/music-box-sounds/main/Drum%20Samples/Samples";
+    const volNode = new Tone.Volume(options.volume / 5 - 20).toDestination();
+    const audioLoader = new Tone.Players(
+      {
+        openHat: `${url}/openhat-808.wav`,
+        closedHat: `${url}/hihat-808.wav`,
+        clap: `${url}/clap-808.wav`,
+        kick: `${url}/kick-808.wav`
+      },
+      () => {
+        setIsLoading(false);
+        console.log("Player Loaded");
+      }
+    ).connect(volNode);
+    setAudioPlayer({ audioLoader, volNode });
+  };
+
+  const play = () => {
+    if (!audioPlayer.audioLoader) return;
+    Tone.context.latencyHint = "fastest";
+    Tone.Transport.bpm.value = options.tempo;
+    const seq = new Tone.Sequence(
+      (time, idx) => {
+        if (preset.notes["openHat"][idx] === 1) {
+          audioPlayer.audioLoader.player("openHat").start(time, 0, "1n");
+        }
+        if (preset.notes["closedHat"][idx] === 1) {
+          audioPlayer.audioLoader.player("closedHat").start(time, 0, "1n");
+        }
+        if (preset.notes["clap"][idx] === 1) {
+          audioPlayer.audioLoader.player("clap").start(time, 0, "1n");
+        }
+        if (preset.notes["kick"][idx] === 1) {
+          audioPlayer.audioLoader.player("kick").start(time, 0, "1n");
+        }
+      },
+      [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+      "16n"
+    );
+    seq.start("+0.2");
+    Tone.Transport.start("+0.2");
+  };
 
   const togglePlayState = () => {
     setIsPlaying((prevIsPlaying) => !prevIsPlaying);
@@ -40,7 +81,11 @@ const ContextProvider = ({ children }) => {
   const handelChange = (event) => {
     const { name, type } = event.target;
     const value =
-      type === "checkbox" ? event.target.isChecked : event.target.value;
+      type === "checkbox"
+        ? event.target.isChecked
+        : type === "range"
+        ? parseFloat(event.target.value)
+        : event.target.value;
 
     setOptions((prevOptions) => ({ ...prevOptions, [name]: value }));
   };
@@ -68,66 +113,6 @@ const ContextProvider = ({ children }) => {
     loadPreset(keysArr[rand]);
   };
 
-  const toneSetUp = () => {
-    // const url1 =
-    //   "https://github.com/Kuntal-Das/music-box-sounds/blob/main/Drum%20Samples/Samples";
-
-    // const vol = new Tone.Volume().toDestination();
-    // const osc = new Tone.Oscillator().connect(vol).start();
-    const openhatPlayer = new Tone.Player(openhatBuffer).toDestination();
-    const closedhatPlayer = new Tone.Player(closedhatBuffer).toDestination();
-    const clapPlayer = new Tone.Player(clapBuffer).toDestination();
-    const kickPlayer = new Tone.Player(kickBuffer).toDestination();
-
-    let index = 0;
-    const music = (time) => {
-      if (preset.notes["openHat"][index] === 1) {
-        openhatPlayer.start(time, 0, "1n");
-      }
-      if (preset.notes["closedHat"][index] === 1) {
-        closedhatPlayer.start(time, 0, "1n");
-      }
-      if (preset.notes["clap"][index] === 1) {
-        clapPlayer.start(time, 0, "1n");
-      }
-      if (preset.notes["kick"][index] === 1) {
-        kickPlayer.start(time, 0, "1n");
-      }
-      index = (index + 1) % preset.noOfNodes;
-    };
-    Tone.Transport.bpm.value = options.tempo;
-    Tone.Transport.scheduleRepeat(music, "16n");
-    Tone.Transport.start();
-    // console.log("Tone.Transport.start()");
-  };
-
-  useEffect(loadRandomPreset, []);
-  useEffect(() => {
-    loadPreset(options.presetName);
-    if (isPlaying) togglePlayState();
-    // setTimeout(togglePlayState,250)
-  }, [options.presetName]);
-
-  useEffect(() => {
-    if (isPlaying) {
-      toneSetUp();
-      Tone.start();
-    } else {
-      Tone.Transport.stop();
-      Tone.Transport.cancel(0);
-    }
-    // console.log(`isPlaying: ${isPlaying}`);
-    return () => Tone.Transport.stop();
-  }, [isPlaying]);
-
-  useEffect(() => {
-    Tone.Transport.bpm.value = options.tempo;
-  }, [options.tempo]);
-
-  // useEffect(() => {
-  //   Tone.vol;
-  // }, [options.volume]);
-
   const toggleNote = (ckey) => {
     const [ins, i, j] = ckey.split("_");
     // console.log(ins, i, j);
@@ -142,12 +127,49 @@ const ContextProvider = ({ children }) => {
       }
     }));
   };
+
+  useEffect(() => {
+    loadRandomPreset();
+    toneSetUp();
+  }, []);
+
+  useEffect(() => {
+    loadPreset(options.presetName);
+    if (isPlaying) togglePlayState();
+    // setTimeout(togglePlayState,250)
+  }, [options.presetName]);
+
+  useEffect(() => {
+    if (isPlaying) {
+      if (Tone.context.state !== "running") {
+        Tone.context.resume();
+      }
+      play();
+    } else {
+      Tone.Transport.stop();
+      Tone.Transport.cancel(0);
+    }
+    // console.log(`isPlaying: ${isPlaying}`);
+    return () => Tone.Transport.stop();
+  }, [isPlaying]);
+
+  useEffect(() => {
+    Tone.Transport.bpm.value = options.tempo;
+  }, [options.tempo]);
+
+  useEffect(() => {
+    if (!audioPlayer.volNode) return;
+    if (options.volume === 0) audioPlayer.volNode.mute = true;
+    else audioPlayer.volNode.set({ volume: options.volume / 5 - 20 });
+  }, [options.volume]);
+
   return (
     <Context.Provider
       value={{
         ...options,
         ...preset,
         isPlaying,
+        isLoading,
         // currentposition,
         handelChange,
         togglePlayState,
