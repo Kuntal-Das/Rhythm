@@ -9,24 +9,32 @@
   justify-self: start;
 }
 
-.input-select{
-  justify-self: start;
-}
 
 .input-select,
 .btn{
-  min-width: calc(10em + 5px);
-  padding: 0.75em 1.75em;
+  border:none;
+  min-width: 10em;
   font-weight: 700;
   border-radius: 5px;
 }
-
-.btn{
-  border: none;
-  color: white;
-  background-color: var(--clr-primary);
+.input-select{
+  padding: 0.75em;
+  justify-self: start;
+  border:1px solid var(--clr-dark);
 }
 
+.btn{
+  color: white;
+  padding: 0.75em 1.5em;
+  background-color: var(--clr-primary);
+  border: 1px solid transparent;
+}
+.btn:hover,
+.btn:focus{
+  color: var(--clr-primary);
+  background-color: transparent;
+  border-color: var(--clr-primary);
+}
 .actions{
   grid-column: span 2;
   display: grid;

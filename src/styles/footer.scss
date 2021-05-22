@@ -3,13 +3,28 @@
 }
 .grid-footer{
   display:grid;
-  grid-template-columns: 1fr 1fr auto;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap:1em;
+}
+.silder-container{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1em;
   align-items: center;
 }
 .playpause{
+  cursor: pointer;
   border-radius: 100%;
   width: 5.5em;
   height: 5.5em;
   display: grid;
   place-items: center;
+  background-color: var(--clr-white);
+  position: relative;
+  border: none;
+}
+
+#playpause{
+  viewBox:"300 0 300 300";
 }

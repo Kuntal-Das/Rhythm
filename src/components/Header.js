@@ -6,8 +6,8 @@ import "../styles/header.scss";
 // import { ReactComponent as LogoDark } from "../logo/big-dark.svg"
 import { ReactComponent as LogoLight } from "../logo/big-light.svg";
 
-import { ReactComponent as GithubIcon } from "../social-icons/github.svg";
-import { ReactComponent as TwitterIcon } from "../social-icons/twitter.svg";
+import { ReactComponent as GithubIcon } from "../svgs/github.svg";
+import { ReactComponent as TwitterIcon } from "../svgs/twitter.svg";
 
 const Header = () => {
   return (
