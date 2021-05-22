@@ -41,11 +41,15 @@
   
   &::-webkit-slider-thumb{
     -webkit-appearance: none;
-    width: 1px;
+    opacity: 0;
+    width: 0px;
+    height: 0px;
   }
   &::-moz-range-thumb{
     -webkit-appearance: none;
-    width: 1px;
+    opacity: 0;
+    width: 0px;
+    height: 0px;
   }
 }
 

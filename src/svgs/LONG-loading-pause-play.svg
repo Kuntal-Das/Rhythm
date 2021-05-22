@@ -7,7 +7,7 @@
 	<path d="M220.5 149.402C222.5 150.557 222.5 153.443 220.5 154.598L117 214.354C115 215.509 112.5 214.065 112.5 211.756L112.5 92.2443C112.5 89.9348 115 88.4915 117 89.6462L220.5 149.402Z" fill="#C8C8C8"/>
 	<circle cx="150" cy="150" r="145" stroke="url(#paint0_linear)" stroke-width="10">
 		<animateTransform attributeName="transform" type="rotate" begin="0s" dur="1s" from="0 150 150" to="360 150 150" repeatCount="indefinite"/>
-	<circle/>
+	</circle>
 	<defs>
 		<linearGradient id="paint0_linear" x1="150" y1="0" x2="150" y2="300" gradientUnits="userSpaceOnUse">
 			<stop offset="0.285558" stop-color="white"/>
