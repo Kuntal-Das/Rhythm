@@ -1,5 +1,11 @@
-https://kuntal-das.github.io/Rhythm/
-# Getting Started with Create React App
+# Rhythm
+it is a beat box maker app in your web browser, made with REACT and Tone.js (and l❤️ve) 
+
+it still underdevelopment and current version in live at 👉 https://kuntal-das.github.io/Rhythm/
+
+
+
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
