@@ -1,26 +1,26 @@
 :root {
-  --clr-accent: #d02577;
+  --clr-accent : #d02577;
   --clr-primary: #a77aa6;
-  --clr-dark: #6a4e69;
+  --clr-dark   : #6a4e69;
   --clr-grayish: #d4c5d4;
-  --clr-white: #fff;
+  --clr-white  : #fff;
 }
 
-.app{
-	display: grid;
-	min-height: 100vh;
-	grid-template-rows: auto minmax(auto,1fr) auto;
+.app {
+  display           : grid;
+  min-height        : 100vh;
+  grid-template-rows: auto minmax(auto, 1fr) auto;
 }
 
 .container {
   max-width: 1400px;
-  margin: 0 auto;
-  padding: 1em;
+  margin   : 0 auto;
+  padding  : 1em;
 }
 
 .flex-spacebetween {
-  display: flex;
+  display        : flex;
   justify-content: space-between;
-  align-items: center;
-  gap:1em;
+  align-items    : center;
+  gap            : 1em;
 }

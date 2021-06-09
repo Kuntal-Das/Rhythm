@@ -5,16 +5,19 @@ export default function CommingSoon({
   visible = false,
   toggleVisibility
 }) {
+
   const containerDivStyle = {
+    display: (visible) ? "grid" : "none",
+    opacity: (visible) ? 1 : 0,
+    placeContent: "center",
+
     position: "fixed",
     zIndex: 20,
-    backgroundColor: "rgba(0,0,0,0.4)",
     top: 0,
     bottom: 0,
     left: 0,
     right: 0,
-    display: "none",
-    placeContent: "center",
+    backgroundColor: "rgba(0,0,0,0.4)",
     transition: "300ms opacity linear"
   };
 
@@ -33,14 +36,6 @@ export default function CommingSoon({
   const h3Style = {
     color: "var(--clr-dark)"
   };
-
-  if (visible) {
-    containerDivStyle.display = "grid";
-    containerDivStyle.opacity = 1;
-  } else {
-    containerDivStyle.opacity = 0;
-    setTimeout(() => (containerDivStyle.display = "none"), 200);
-  }
 
   return (
     <div style={containerDivStyle}>
