@@ -2,7 +2,7 @@
   "name": "improving-rhythm",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://Kuntal-Das.github.io/Rhythm",
+  "homepage": "https://kuntal-das.github.io/Rhythm",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
