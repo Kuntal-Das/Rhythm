@@ -53,7 +53,7 @@ const ContextProvider = ({ children }) => {
 
   const play = () => {
     if (!audioPlayer.audioLoader) return;
-    Tone.context.latencyHint = "interactive";
+    // Tone.context.latencyHint = "interactive";
     Tone.Transport.bpm.value = options.tempo;
     const seq = new Tone.Sequence(
       (time, idx) => {
