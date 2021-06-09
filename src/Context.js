@@ -29,7 +29,7 @@ const ContextProvider = ({ children }) => {
     volNode: null
   });
 
-  const notesRef = useRef({ notes: preset.notes });
+  const notesRef = useRef({ ...preset.notes });
   useEffect(() => (notesRef.current = { ...preset.notes }), [preset.notes]);
 
   const toneSetUp = () => {
@@ -138,7 +138,7 @@ const ContextProvider = ({ children }) => {
 
   useEffect(() => {
     loadPreset(options.presetName);
-    if (isPlaying) togglePlayState();
+    // if (isPlaying) togglePlayState();
     // setTimeout(togglePlayState,250)
   }, [options.presetName]);
 
