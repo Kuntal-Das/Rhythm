@@ -5,9 +5,12 @@ import Timeline from "./Timeline";
 import { Context } from "../Context";
 
 import presets from "../presets";
+import CommingSoon from "../components/CommingSoon";
+import useToggle from "../hooks/useToggle";
 
 const Content = () => {
   const { presetName, handelChange } = useContext(Context);
+  const [isVisible, toggleVisiblity] = useToggle(true);
 
   return (
     <main>
@@ -25,8 +28,15 @@ const Content = () => {
             </option>
           ))}
         </select>
-        <button className="btn justify-end">Export</button>
+        <button className="btn justify-end" onClick={toggleVisiblity}>
+          Export
+        </button>
         <Timeline />
+        <CommingSoon
+          name="export"
+          visible={isVisible}
+          toggleVisibility={toggleVisiblity}
+        />
       </div>
     </main>
   );
