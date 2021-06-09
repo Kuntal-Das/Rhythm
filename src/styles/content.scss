@@ -1,43 +1,48 @@
-.content-grid{
-  display:grid;
-  grid-template-columns: repeat(2,1fr);
+.content-grid {
+  display              : grid;
+  grid-template-columns: repeat(2, 1fr);
 }
-.justify-end{
+
+.justify-end {
   justify-self: end;
 }
-.justify-start{
+
+.justify-start {
   justify-self: start;
 }
 
 
 .input-select,
-.btn{
-  border:none;
-  min-width: 10em;
-  font-weight: 700;
+.btn {
+  border       : none;
+  min-width    : 10em;
+  font-weight  : 700;
   border-radius: 5px;
 }
-.input-select{
-  padding: 0.75em;
+
+.input-select {
+  padding     : 0.75em;
   justify-self: start;
-  border:1px solid var(--clr-dark);
+  border      : 1px solid var(--clr-dark);
 }
 
-.btn{
-  color: white;
-  padding: 0.75em 1.5em;
+.btn {
+  color           : white;
+  padding         : 0.75em 1.5em;
   background-color: var(--clr-primary);
-  border: 1px solid transparent;
+  border          : 1px solid transparent;
 }
+
 .btn:hover,
-.btn:focus{
-  color: var(--clr-primary);
+.btn:focus {
+  color           : var(--clr-primary);
   background-color: transparent;
-  border-color: var(--clr-primary);
+  border-color    : var(--clr-primary);
 }
-.actions{
-  grid-column: span 2;
-  display: grid;
-  grid-template-columns: minmax(auto,calc(10em + 5px)) 1fr;
-  grid-gap: 1em;
+
+.actions {
+  grid-column          : span 2;
+  display              : grid;
+  grid-template-columns: minmax(auto, calc(10em + 5px)) 1fr;
+  grid-gap             : 1em;
 }
