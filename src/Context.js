@@ -30,6 +30,7 @@ const ContextProvider = ({ children }) => {
   });
 
   const notesRef = useRef({ notes: preset.notes });
+  useEffect(() => (notesRef.current = { ...preset.notes }), [preset.notes]);
 
   const toneSetUp = () => {
     const url =
@@ -134,8 +135,6 @@ const ContextProvider = ({ children }) => {
     loadRandomPreset();
     toneSetUp();
   }, []);
-
-  useEffect(() => (notesRef.current = { ...preset.notes }), [preset.notes]);
 
   useEffect(() => {
     loadPreset(options.presetName);
