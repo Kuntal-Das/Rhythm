@@ -10,7 +10,7 @@ import useToggle from "../hooks/useToggle";
 
 const Content = () => {
   const { presetName, handelChange } = useContext(Context);
-  const [isVisible, toggleVisiblity] = useToggle(true);
+  const [isVisible, toggleVisiblity] = useToggle(false);
 
   return (
     <main>

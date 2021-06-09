@@ -34,14 +34,6 @@ export default function CommingSoon({
     color: "var(--clr-dark)"
   };
 
-  const btnStyle = {
-    padding: "0.75em 2.5em",
-    fontSize: "1rem",
-    fontWeight: 800,
-    fontFamily: "inherit",
-    color: "var(--clr-accent)"
-  };
-
   if (visible) {
     containerDivStyle.display = "grid";
     containerDivStyle.opacity = 1;
@@ -59,7 +51,7 @@ export default function CommingSoon({
             🔨🛠⚒
           </span>{" "}
         </h3>
-        <button style={btnStyle} onClick={toggleVisibility}>
+        <button className="btn" onClick={toggleVisibility}>
           Close
         </button>
       </div>
