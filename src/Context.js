@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useRef } from "react";
 import * as Tone from "tone";
 
 import presetsData from "./presets";
@@ -18,7 +18,7 @@ const ContextProvider = ({ children }) => {
     tempoMax: 210,
     tempoStep: 1
   });
-  var [preset, setPreset] = useState({
+  const [preset, setPreset] = useState({
     noOfNodes: 16,
     notes: {}
   });
@@ -28,6 +28,8 @@ const ContextProvider = ({ children }) => {
     audioLoader: null,
     volNode: null
   });
+
+  const notesRef = useRef({ notes: preset.notes });
 
   const toneSetUp = () => {
     const url =
@@ -50,20 +52,20 @@ const ContextProvider = ({ children }) => {
 
   const play = () => {
     if (!audioPlayer.audioLoader) return;
-    // Tone.context.latencyHint = "playback";
+    Tone.context.latencyHint = "interactive";
     Tone.Transport.bpm.value = options.tempo;
     const seq = new Tone.Sequence(
       (time, idx) => {
-        if (preset.notes["openHat"][idx] === 1) {
+        if (notesRef.current["openHat"][idx] === 1) {
           audioPlayer.audioLoader.player("openHat").start(time, 0, "1n");
         }
-        if (preset.notes["closedHat"][idx] === 1) {
+        if (notesRef.current["closedHat"][idx] === 1) {
           audioPlayer.audioLoader.player("closedHat").start(time, 0, "1n");
         }
-        if (preset.notes["clap"][idx] === 1) {
+        if (notesRef.current["clap"][idx] === 1) {
           audioPlayer.audioLoader.player("clap").start(time, 0, "1n");
         }
-        if (preset.notes["kick"][idx] === 1) {
+        if (notesRef.current["kick"][idx] === 1) {
           audioPlayer.audioLoader.player("kick").start(time, 0, "1n");
         }
       },
@@ -132,6 +134,8 @@ const ContextProvider = ({ children }) => {
     loadRandomPreset();
     toneSetUp();
   }, []);
+
+  useEffect(() => (notesRef.current = { ...preset.notes }), [preset.notes]);
 
   useEffect(() => {
     loadPreset(options.presetName);
