@@ -51,7 +51,7 @@ const ContextProvider = ({ children }) => {
     setAudioPlayer({ audioLoader, volNode });
   };
 
-  const play = () => {
+  const play = async () => {
     if (!audioPlayer.audioLoader) return;
     Tone.context.latencyHint = "interactive";
     Tone.Transport.bpm.value = options.tempo;
@@ -74,7 +74,7 @@ const ContextProvider = ({ children }) => {
       "16n"
     );
     seq.start("+0.2");
-    Tone.Transport.start("+0.2");
+    await Tone.Transport.start("+0.2");
   };
 
   const togglePlayState = () => {
