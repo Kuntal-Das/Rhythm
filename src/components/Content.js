@@ -2,14 +2,15 @@ import React, { useContext } from "react";
 import "../styles/content.scss";
 
 import Timeline from "./Timeline";
-import { Context } from "../Context";
+// import { Context } from "../Context";
+import { RhythmContext } from "../RhythmContext";
 
 import presets from "../presets";
 import CommingSoon from "../components/CommingSoon";
 import useToggle from "../hooks/useToggle";
 
 const Content = () => {
-  const { presetName, handelChange } = useContext(Context);
+  const { presetName, handelChange } = useContext(RhythmContext);
   const [isVisible, toggleVisiblity] = useToggle(false);
 
   return (

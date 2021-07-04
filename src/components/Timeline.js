@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
 import "../styles/timeline.scss";
 
-import { Context } from "../Context";
+// import { Context } from "../Context";
+import { RhythmContext } from "../RhythmContext";
 
 const Timeline = () => {
     // currentposition, 
-  const { noOfNodes, notes, toggleNote } = useContext(Context);
+  const { noOfNodes, notes, toggleNote } = useContext(RhythmContext);
   const keysArr = Object.keys(notes);
   // const instruments = keysArr.length;
 
