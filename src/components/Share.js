@@ -41,7 +41,7 @@ export default function Share({
   const handleSubmit = (e) => {
     e.preventDefault();
     const twitter = (formData.profile === "") ? "" : `https://twitter.com/${formData.profile}`
-    const url = getShareURL(formData.presetName, FormData.name, twitter)
+    const url = getShareURL(formData.presetName, formData.name, twitter)
     const loc = String(window.location).split("?")[0]
     setshareURL(`${loc}?load=${url}`)
 
@@ -59,7 +59,7 @@ export default function Share({
   return (
     <div style={containerDivStyle}>
       <form className="inner-div" onSubmit={handleSubmit}>
-        <h1 class="share-heading">Share</h1>
+        <h1 className="share-heading">Share</h1>
 
         <label className="input-label" htmlFor="name">Your Name : </label>
         <input required placeholder="John doe" className="input-text" id="name" name="name" type="text" value={formData.name} onChange={handelchange} />
@@ -70,10 +70,10 @@ export default function Share({
         <label className="input-label" htmlFor="profile">Attach your twitter profile to it :(optional) </label>
         <input placeholder="Jonhdoe123" className="input-text" id="profile" name="profile" type="text" value={formData.profile} onChange={handelchange} />
 
-        <textarea className="url" disabled value={shareURL} />
+        <textarea className="url" disabled value={shareURL} placeholder="your sharable url will apear here" />
 
         <button className="btn btn-submit" type="submit">
-          <span class="tooltiptext" ref={tooltipRef} id="myTooltip">Copied to clipboard</span>
+          <span className="tooltiptext" ref={tooltipRef} id="myTooltip">Copied to clipboard</span>
           Get URL
         </button>
         <button className="btn-close" onClick={toggleVisibility}>X</button>

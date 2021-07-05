@@ -50,13 +50,11 @@ class RhythmContextProvider extends Component {
 
   loadSharedURL = (query) => {
     if (!query) return
-    const { presetName, tempo, noOfNodes, notes } = EncodeDecode.decodeQueryStrtoState(query)
-    this.presetsData[presetName] = {
-      tempo,
-      noOfNodes,
-      notes
+    const decoded = EncodeDecode.decodeQueryStrtoState(query)
+    this.presetsData[decoded.presetName] = {
+      ...decoded
     }
-    this.loadPreset(presetName)
+    this.loadPreset(decoded.presetName)
   }
 
   // setup tonejs AudioPlayer
@@ -144,8 +142,8 @@ class RhythmContextProvider extends Component {
     if (key === "") {
       return;
     }
-    // getting the presets declared in `./preset.js`
-    const { tempo, noOfNodes, notes } = this.presetsData[key];
+    // getting the presets declared in `./preset.json`
+    const { tempo, ...rest } = this.presetsData[key];
 
     // and setting state
     this.setState(prevState => ({
@@ -154,7 +152,7 @@ class RhythmContextProvider extends Component {
         presetName: key,
         tempo,
       },
-      preset: { noOfNodes, notes }
+      preset: { ...rest }
     }))
   };
 

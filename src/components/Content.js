@@ -7,6 +7,7 @@ import { RhythmContext } from "../RhythmContext";
 
 import useToggle from "../hooks/useToggle";
 import Share from "./Share";
+import Credits from "./Credits";
 
 const Content = () => {
   const { presetsData, presetName, handelChange } = useContext(RhythmContext);
@@ -36,6 +37,7 @@ const Content = () => {
           visible={isVisible}
           toggleVisibility={toggleVisiblity}
         />
+      <Credits />
       </div>
     </main>
   );
