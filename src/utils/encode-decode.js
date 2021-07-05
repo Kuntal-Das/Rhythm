@@ -21,15 +21,16 @@ export class EncodeDecode {
         return decoded
     }
 
-    static encodeStatetoQueryStr = (presetName, by, stateObj) => {
+    static encodeStatetoQueryStr = (presetName, by, profile, stateObj) => {
         if (!stateObj || !presetName || !by) return
         const notes = this.#encodeNotes(stateObj.preset.notes)
         const thingstoEncode = {
-            presetName,
-            by,
-            tempo: stateObj.options.tempo,
-            noOfNodes: stateObj.preset.noOfNodes,
-            notes
+            a: presetName,
+            b: by,
+            c: profile,
+            d: stateObj.options.tempo,
+            // noOfNodes: stateObj.preset.noOfNodes,
+            e: notes
         }
         return encodeURIComponent(JSON.stringify(thingstoEncode))
     }
@@ -38,12 +39,13 @@ export class EncodeDecode {
         if (queryStr === "" || !queryStr) return
 
         const Obj = JSON.parse(decodeURIComponent(queryStr))
-        const notes = this.#decodeNotes(Obj.notes)
+        const notes = this.#decodeNotes(Obj.e)
         const decodedObj = {
-            by: Obj.by,
-            presetName: Obj.presetName,
-            tempo: Obj.tempo,
-            noOfNodes: Obj.noOfNodes,
+            presetName: Obj.a,
+            by: Obj.b,
+            profile: Obj.c,
+            tempo: Obj.d,
+            noOfNodes: 16,
             notes
         }
         return decodedObj;

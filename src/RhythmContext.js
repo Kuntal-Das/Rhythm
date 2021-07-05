@@ -44,8 +44,8 @@ class RhythmContextProvider extends Component {
     this.query = null
   }
 
-  getShareURL = () => {
-    return EncodeDecode.encodeStatetoQueryStr("testPreset", "Kuntal Das", this.state)
+  getShareURL = (presetName, by, profile) => {
+    return EncodeDecode.encodeStatetoQueryStr(presetName, by, profile, this.state)
   }
 
   loadSharedURL = (query) => {
@@ -167,7 +167,7 @@ class RhythmContextProvider extends Component {
 
   // toggle node/note ?
   toggleNote = (ckey) => {
-    const [ins, i, j] = ckey.split("_");
+    const [ins, , j] = ckey.split("_");
     const newNotes = [...this.state.preset.notes[ins]];
     newNotes[j] = newNotes[j] ? 0 : 1;
 

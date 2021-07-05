@@ -5,8 +5,8 @@ import Timeline from "./Timeline";
 // import { Context } from "../Context";
 import { RhythmContext } from "../RhythmContext";
 
-import CommingSoon from "../components/CommingSoon";
 import useToggle from "../hooks/useToggle";
+import Share from "./Share";
 
 const Content = () => {
   const { presetsData, presetName, handelChange } = useContext(RhythmContext);
@@ -29,11 +29,10 @@ const Content = () => {
           ))}
         </select>
         <button className="btn justify-end" onClick={toggleVisiblity}>
-          Export
+          Share
         </button>
         <Timeline />
-        <CommingSoon
-          name="export"
+        <Share
           visible={isVisible}
           toggleVisibility={toggleVisiblity}
         />
