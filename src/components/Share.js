@@ -56,16 +56,16 @@ export default function Share({
     setTimeout(() => { tooltipRef.current.classList.remove("visible") }, 1500)
   }
 
-  const tweet = (e) => {
-    e.preventDefault();
-    const twitter = (formData.profile === "") ? "" : `https://twitter.com/${formData.profile}`
-    const url = getShareURL(formData.presetName, formData.name, twitter)
-    const loc = String(window.location).split("?")[0]
-    setshareURL(`${loc}?load=${url}`)
+  // const tweet = (e) => {
+  //   e.preventDefault();
+  //   const twitter = (formData.profile === "") ? "" : `https://twitter.com/${formData.profile}`
+  //   const url = getShareURL(formData.presetName, formData.name, twitter)
+  //   const loc = String(window.location).split("?")[0]
+  //   setshareURL(`${loc}?load=${url}`)
 
-    const href = `https://twitter.com/intent/tweet?text=Hey%20I%20created%20this%20awesome%20rhythm%20using%20this%20app%20made%20by%20%40Kuntal449&url=${loc}?load=${url}}`
-    window.open(href, "_blank");
-  }
+  //   const href = `https://twitter.com/intent/tweet?text=Hey%20I%20created%20this%20awesome%20rhythm%20using%20this%20app%20made%20by%20%40Kuntal449&url=${loc}?load=${url}}`
+  //   window.open(href, "_blank");
+  // }
 
   return (
     <div style={containerDivStyle}>
@@ -87,7 +87,7 @@ export default function Share({
           <span className="tooltiptext" ref={tooltipRef} id="myTooltip">Copied to clipboard</span>
           Get URL
         </button>
-        <button className="btn btn-tweet" type="submit" onClick={tweet}>Tweet</button>
+        {/* <button className="btn btn-tweet" type="submit" onClick={tweet}>Tweet</button> */}
         <button className="btn-close" type="button" onClick={toggleVisibility}>X</button>
       </form>
     </div>
