@@ -57,13 +57,11 @@
     grid-column: 1 / -1;
     display    : block;
     max-width  : 100%;
+    padding    : 0.5em;
 }
 
-
-
-.btn-tweet,
 .btn-submit {
-    // grid-column : 1/ -1;
+    grid-column : 1/ -1;
     position    : relative;
     justify-self: center;
 }
