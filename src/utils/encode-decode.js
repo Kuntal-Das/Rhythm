@@ -32,13 +32,14 @@ export class EncodeDecode {
             // noOfNodes: stateObj.preset.noOfNodes,
             e: notes
         }
-        return encodeURIComponent(JSON.stringify(thingstoEncode))
+        const b64 = btoa(JSON.stringify(thingstoEncode))
+        return encodeURIComponent(b64)
     }
 
     static decodeQueryStrtoState = (queryStr) => {
         if (queryStr === "" || !queryStr) return
-
-        const Obj = JSON.parse(decodeURIComponent(queryStr))
+        const uri = atob(decodeURIComponent(queryStr))
+        const Obj = JSON.parse(uri)
         const notes = this.#decodeNotes(Obj.e)
         const decodedObj = {
             presetName: Obj.a,
