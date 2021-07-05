@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
+import { RhythmContext } from "../RhythmContext";
 
 export default function CommingSoon({
   name = "",
   visible = false,
   toggleVisibility
 }) {
-
+  const { getShareURL } = useContext(RhythmContext)
   const containerDivStyle = {
     display: (visible) ? "grid" : "none",
     opacity: (visible) ? 1 : 0,
@@ -37,6 +38,13 @@ export default function CommingSoon({
     color: "var(--clr-dark)"
   };
 
+  const handleClick = (e) => {
+    toggleVisibility()
+    const url = getShareURL()
+    const loc = String(window.location).split("?")[0]
+    console.log(`${loc}?load=${url}`)
+  }
+
   return (
     <div style={containerDivStyle}>
       <div style={innerDivStyle}>
@@ -46,7 +54,7 @@ export default function CommingSoon({
             🔨🛠⚒
           </span>{" "}
         </h3>
-        <button className="btn" onClick={toggleVisibility}>
+        <button className="btn" onClick={handleClick}>
           Close
         </button>
       </div>

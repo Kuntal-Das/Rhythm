@@ -32,7 +32,7 @@ const Footer = () => {
             step={tempoStep}
             min={tempoMin}
             max={tempoMax}
-            value={tempo}
+            value={parseInt(tempo)}
             handelChange={handelChange}
           />
           <Slider
@@ -41,7 +41,7 @@ const Footer = () => {
             min={volMin}
             max={volMax}
             step={volStep}
-            value={volume}
+            value={parseInt(volume)}
             handelChange={handelChange}
           />
         </div>

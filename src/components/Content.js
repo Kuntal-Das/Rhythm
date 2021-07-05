@@ -5,12 +5,11 @@ import Timeline from "./Timeline";
 // import { Context } from "../Context";
 import { RhythmContext } from "../RhythmContext";
 
-import presets from "../presets";
 import CommingSoon from "../components/CommingSoon";
 import useToggle from "../hooks/useToggle";
 
 const Content = () => {
-  const { presetName, handelChange } = useContext(RhythmContext);
+  const { presetsData, presetName, handelChange } = useContext(RhythmContext);
   const [isVisible, toggleVisiblity] = useToggle(false);
 
   return (
@@ -23,7 +22,7 @@ const Content = () => {
           onChange={handelChange}
         >
           {/* <option value="">Select Preset</option> */}
-          {Object.keys(presets).map((key) => (
+          {Object.keys(presetsData).map((key) => (
             <option key={key} value={key}>
               {key.split("_").join(" ")}
             </option>

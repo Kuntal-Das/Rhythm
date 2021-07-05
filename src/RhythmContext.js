@@ -1,7 +1,10 @@
 import { createContext, Component, createRef } from "react";
 import * as Tone from "tone";
 
-import presetsData from "./presets";
+// import presetsData from "./presets";
+import * as presetData from "./preset.json"
+import { EncodeDecode } from "./utils/encode-decode";
+import { getQueryString } from "./utils/getQueryString";
 
 const RhythmContext = createContext();
 
@@ -37,6 +40,23 @@ class RhythmContextProvider extends Component {
       currentposition: 0
     }
     this.notesRef = createRef({ ...this.state.preset.notes });
+    this.presetsData = { ...presetData.default }
+    this.query = null
+  }
+
+  getShareURL = () => {
+    return EncodeDecode.encodeStatetoQueryStr("testPreset", "Kuntal Das", this.state)
+  }
+
+  loadSharedURL = (query) => {
+    if (!query) return
+    const { presetName, tempo, noOfNodes, notes } = EncodeDecode.decodeQueryStrtoState(query)
+    this.presetsData[presetName] = {
+      tempo,
+      noOfNodes,
+      notes
+    }
+    this.loadPreset(presetName)
   }
 
   // setup tonejs AudioPlayer
@@ -122,11 +142,10 @@ class RhythmContextProvider extends Component {
   // loads Preset
   loadPreset = (key) => {
     if (key === "") {
-      // console.log(`key : "${key}" is not found in PresetData\n returning...`);
       return;
     }
     // getting the presets declared in `./preset.js`
-    const { tempo, noOfNodes, notes } = presetsData[key];
+    const { tempo, noOfNodes, notes } = this.presetsData[key];
 
     // and setting state
     this.setState(prevState => ({
@@ -141,7 +160,7 @@ class RhythmContextProvider extends Component {
 
   // loads random preset
   loadRandomPreset = () => {
-    const keysArr = Object.keys(presetsData);
+    const keysArr = Object.keys(this.presetsData);
     const rand = Math.floor(Math.random() * keysArr.length);
     this.loadPreset(keysArr[rand]);
   };
@@ -149,10 +168,8 @@ class RhythmContextProvider extends Component {
   // toggle node/note ?
   toggleNote = (ckey) => {
     const [ins, i, j] = ckey.split("_");
-    console.log(ins, i, j);
     const newNotes = [...this.state.preset.notes[ins]];
     newNotes[j] = newNotes[j] ? 0 : 1;
-    // console.log(newNotes);
 
     this.setState(prevState => ({
       preset: {
@@ -167,8 +184,13 @@ class RhythmContextProvider extends Component {
 
   // On load
   componentDidMount = () => {
-    this.loadRandomPreset();
     this.toneSetUp();
+    this.query = getQueryString("load")
+    if (this.query) {
+      this.loadSharedURL(this.query)
+    } else {
+      this.loadRandomPreset();
+    }
   }
 
   componentDidUpdate = (prevProps, prevState, snapshot) => {
@@ -222,12 +244,14 @@ class RhythmContextProvider extends Component {
       value={{
         ...this.state.options,
         ...this.state.preset,
+        presetsData: this.presetsData,
         isPlaying: this.state.isPlaying,
         isLoading: this.state.isLoading,
         currentposition: this.state.currentposition,
         handelChange: this.handelChange,
         togglePlayState: this.togglePlayState,
-        toggleNote: this.toggleNote
+        toggleNote: this.toggleNote,
+        getShareURL: this.getShareURL
       }}
     >
       {this.props.children}
