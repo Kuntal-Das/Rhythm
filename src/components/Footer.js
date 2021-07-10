@@ -4,7 +4,8 @@ import "../styles/footer.scss";
 import Slider from "./Slider";
 import { ReactComponent as PausePlayIcon } from "../svgs/LONG-loading-pause-play.svg";
 
-import { Context } from "../Context";
+// import { Context } from "../Context";
+import { RhythmContext } from "../RhythmContext";
 
 const Footer = () => {
   const {
@@ -20,7 +21,7 @@ const Footer = () => {
     isPlaying,
     isLoading,
     togglePlayState
-  } = useContext(Context);
+  } = useContext(RhythmContext);
   return (
     <footer className="footer">
       <div className="container grid-footer">
@@ -31,7 +32,7 @@ const Footer = () => {
             step={tempoStep}
             min={tempoMin}
             max={tempoMax}
-            value={tempo}
+            value={parseInt(tempo)}
             handelChange={handelChange}
           />
           <Slider
@@ -40,7 +41,7 @@ const Footer = () => {
             min={volMin}
             max={volMax}
             step={volStep}
-            value={volume}
+            value={parseInt(volume)}
             handelChange={handelChange}
           />
         </div>
@@ -54,8 +55,8 @@ const Footer = () => {
               isLoading
                 ? "0 0 300 300"
                 : isPlaying
-                ? "600 0 300 300"
-                : "300 0 300 300"
+                  ? "600 0 300 300"
+                  : "300 0 300 300"
             }
           />
         </button>

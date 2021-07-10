@@ -2,14 +2,15 @@ import React, { useContext } from "react";
 import "../styles/content.scss";
 
 import Timeline from "./Timeline";
-import { Context } from "../Context";
+// import { Context } from "../Context";
+import { RhythmContext } from "../RhythmContext";
 
-import presets from "../presets";
-import CommingSoon from "../components/CommingSoon";
 import useToggle from "../hooks/useToggle";
+import Share from "./Share";
+import Credits from "./Credits";
 
 const Content = () => {
-  const { presetName, handelChange } = useContext(Context);
+  const { presetsData, presetName, handelChange } = useContext(RhythmContext);
   const [isVisible, toggleVisiblity] = useToggle(false);
 
   return (
@@ -22,21 +23,21 @@ const Content = () => {
           onChange={handelChange}
         >
           {/* <option value="">Select Preset</option> */}
-          {Object.keys(presets).map((key) => (
+          {Object.keys(presetsData).map((key) => (
             <option key={key} value={key}>
               {key.split("_").join(" ")}
             </option>
           ))}
         </select>
         <button className="btn justify-end" onClick={toggleVisiblity}>
-          Export
+          Share
         </button>
         <Timeline />
-        <CommingSoon
-          name="export"
+        <Share
           visible={isVisible}
           toggleVisibility={toggleVisiblity}
         />
+      <Credits />
       </div>
     </main>
   );

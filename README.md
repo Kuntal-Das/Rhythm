@@ -1,7 +1,7 @@
 # Rhythm
 it is a beat box maker app in your web browser, made with REACT and Tone.js (and l❤️ve) 
 
-it still underdevelopment and current version in live at 👉 https://kuntal-das.github.io/Rhythm/
+it still under development and current version in live at 👉 https://kuntal-das.github.io/Rhythm/
 
 
 
